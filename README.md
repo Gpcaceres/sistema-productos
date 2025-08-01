@@ -119,3 +119,8 @@ npm install
 ng serve -o
 El frontend se servirá en http://localhost:4200 y consumirá las APIs.
 
+COMANDO FINAL 
+ruta raiz del proyecto Microservicios
+up-all.cmd
+
+
