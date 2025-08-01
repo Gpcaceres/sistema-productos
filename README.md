@@ -56,6 +56,17 @@ docker run -d --rm --name app-products \
   -e DB_PASSWORD=admin123 \
   germancinec/products:latest
 
+
+CONTENEDORES PERMANENTES
+
+
+* docker run -d --rm --name app-categorias -p 8081:8081 --network net-app -e DB_HOST=test-db germancinec/categories
+
+* docker run -d --rm --name test-db --network net-app -p 3306:3306 germancinec/test-db
+
+* docker run -d --rm --name app-products --network net-app -e DB_HOST=test-db -e DB_DATABASE=test -e DB_USER=root -e DB_PASSWORD=admin123 -p 8082:8081 germancinec/products:latest
+  
+
 EJECUTA DESDE LA RAIZ DEL PROYECTO:
 
  - docker compose up -d
