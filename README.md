@@ -25,23 +25,19 @@ Node.js + Angular CLI (solo para desarrollo frontend)
 🐳 2. Levantar el sistema con Docker Compose
 Desde la raíz del proyecto:
 
-bash
-Copiar
-Editar
-docker compose up -d
+  docker compose up -d
+  
 Detener los servicios:
 
-bash
-Copiar
-Editar
-docker compose stop
+  docker compose stop
+
 Esto levantará:
 
 test-db (MySQL)
 
-app-categorias → API en http://localhost:8081/api/categories
+  app-categorias → API en http://localhost:8081/api/categories
 
-app-products → API en http://localhost:8082/api/products
+  app-products → API en http://localhost:8082/api/products
 
 ⚙️ 3. Ejecutar contenedores manualmente (sin compose)
 bash
