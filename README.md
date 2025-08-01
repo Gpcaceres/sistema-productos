@@ -26,7 +26,9 @@ Node.js + Angular CLI (solo para desarrollo frontend)
 DESCARGA LA IMAGENES DE LOS CONTENEDORES
 
 docker pull germancinec/test-db
+
 docker pull germancinec/categories
+
 docker pull germancinec/products:latest
 
 
