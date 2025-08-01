@@ -1,0 +1,37 @@
+<div class="card">
+  <div class="card-header">
+    <h2 class="card-title">{{ id ? 'Editar' : 'Crear' }} categoría</h2>
+    <a class="btn btn-outline" routerLink="/categories">← Volver</a>
+  </div>
+
+  <div class="card-body">
+    <form [formGroup]="form" (ngSubmit)="save()" class="form-grid">
+      <div class="form-col-6">
+        <label>Nombre</label>
+        <input class="input"
+               formControlName="name"
+               [class.invalid]="form.controls.name.touched && form.controls.name.invalid" />
+        <div class="error" *ngIf="form.controls.name.touched && form.controls.name.invalid">
+          El nombre es obligatorio (mínimo 2 caracteres).
+        </div>
+      </div>
+
+      <div class="form-col-12">
+        <label>Descripción</label>
+        <textarea rows="3"
+                  class="input"
+                  formControlName="description"
+                  [class.invalid]="form.controls.description.touched && form.controls.description.invalid"></textarea>
+        <div class="error" *ngIf="form.controls.description.touched && form.controls.description.invalid">
+          La descripción es obligatoria (mínimo 2 caracteres).
+        </div>
+        <div class="helper">Describe la categoría (ej. “Electrodomésticos para el hogar”).</div>
+      </div>
+
+      <div class="form-col-12" style="display:flex; gap:.6rem; margin-top:.5rem">
+        <button type="submit" class="btn btn-primary">💾 Guardar</button>
+        <a class="btn btn-outline" routerLink="/categories">Cancelar</a>
+      </div>
+    </form>
+  </div>
+</div>

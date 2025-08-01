@@ -1,0 +1,35 @@
+<!-- src/app/pages/products/products-list/products-list.component.html -->
+<div class="card">
+  <div class="card-header">
+    <h2 style="margin:0">Productos</h2>
+    <a class="btn btn-primary" routerLink="/products/new">➕ Crear producto</a>
+  </div>
+  <div class="card-body">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Nombre</th>
+          <th>Descripción</th>
+          <th>Precio</th>
+          <th>Categoría (id)</th>
+          <th style="width:180px">Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let p of (products$ | async)">
+          <td>{{ p.id }}</td>
+          <td>{{ p.name }}</td>
+          <td>{{ p.description }}</td>
+          <td>{{ p.price | currency }}</td>
+          <td><span class="badge">{{ p.category }}</span></td>
+          <td class="actions">
+            <a class="btn btn-outline" [routerLink]="['/products', p.id]">Editar</a>
+            <button class="btn btn-danger" (click)="remove(p.id!)">Eliminar</button>
+         </td>
+
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

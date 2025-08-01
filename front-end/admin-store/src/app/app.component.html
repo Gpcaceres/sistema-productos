@@ -1,0 +1,22 @@
+<header class="topbar">
+  <div class="container">
+    <a class="brand" routerLink="/">AdminStore</a>
+    <nav class="nav">
+      <a routerLink="/products" routerLinkActive="active">Productos</a>
+      <a routerLink="/categories" routerLinkActive="active">Categorías</a>
+      <button class="btn btn-outline" type="button" (click)="toggleTheme()" style="margin-left:.75rem">
+        {{ themeIcon }} Tema: {{ themeLabel }}
+      </button>
+    </nav>
+  </div>
+</header>
+
+<main class="container">
+  <router-outlet />
+</main>
+
+<footer class="footer">
+  <div class="container">
+    <small>© {{ year }} AdminStore</small>
+  </div>
+</footer>

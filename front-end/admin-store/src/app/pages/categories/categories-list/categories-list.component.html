@@ -1,0 +1,45 @@
+<div class="card">
+  <div class="card-header">
+    <h2 class="card-title">Categorías</h2>
+    <a class="btn btn-primary" routerLink="/categories/new">➕ Nueva categoría</a>
+  </div>
+
+  <div class="card-body">
+    <!-- Estado: cargando -->
+    <div *ngIf="(categories$ | async) === null">
+      Cargando categorías…
+    </div>
+
+    <!-- Estado: vacío -->
+    <div *ngIf="(categories$ | async) as cats">
+      <ng-container *ngIf="cats.length; else empty">
+        <table class="table">
+          <thead>
+            <tr>
+              <th style="width:80px">ID</th>
+              <th>Nombre</th>
+              <th>Descripción</th>
+              <th style="width:180px">Acciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let c of cats; trackBy: trackById">
+              <td><span class="badge">{{ c.id }}</span></td>
+              <td>{{ c.name }}</td>
+              <td>{{ c.description }}</td>
+              <td class="actions">
+                <a class="btn btn-outline" [routerLink]="['/categories', c.id]">Editar</a>
+                <button class="btn btn-danger" (click)="remove(c.id!)">Eliminar</button>
+            </td>
+
+            </tr>
+          </tbody>
+        </table>
+      </ng-container>
+
+      <ng-template #empty>
+        <div class="helper">No hay categorías aún. Crea la primera con el botón “Nueva categoría”.</div>
+      </ng-template>
+    </div>
+  </div>
+</div>

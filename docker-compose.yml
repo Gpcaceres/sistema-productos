@@ -1,0 +1,47 @@
+version: "3.9"
+
+networks:
+  net-app:
+    external: true
+
+services:
+  test-db:
+    image: germancinec/test-db
+    container_name: test-db
+    networks:
+      - net-app
+    ports:
+      - "3306:3306"
+    restart: unless-stopped
+
+  app-categorias:
+    image: germancinec/categories
+    container_name: app-categorias
+    networks:
+      - net-app
+    ports:
+      - "8081:8081"
+    environment:
+      - DB_HOST=test-db
+    depends_on:
+      - test-db
+    restart: unless-stopped
+
+  app-products:
+    image: germancinec/products:latest
+    container_name: app-products
+    networks:
+      - net-app
+    ports:
+      - "8082:8081"   # products expuesto en 8082 del host
+    environment:
+      - DB_HOST=test-db
+      - DB_DATABASE=test
+      - DB_USER=root
+      - DB_PASSWORD=admin123
+      - CATEGORIES_VALIDATE=false
+      - CATEGORIES_API_BASE=http://app-categorias:8081/api/categories
+    depends_on:
+      - test-db
+      - app-categorias
+    restart: unless-stopped

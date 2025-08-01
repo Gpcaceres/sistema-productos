@@ -1,0 +1,5 @@
+docker build -t img-app-products:v1 .
+docker run -d img-app-products:v1
+docker run -d --name c-app-products-v2 -p 80:3000 img-app-products:v1
+
+docker run -dit -p 8081:8081 --name c-app-products-v1 --network test-network -e DB_HOST=test-db:3306 img-app-products:v1
