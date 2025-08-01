@@ -14,20 +14,7 @@ Frontend: Angular (Admin Store)
 Docker Compose para levantar todo el sistema en contenedores.
 
 📂 Estructura del proyecto
-ruby
-Copiar
-Editar
-sistema-productos/
-│
-├── back-end/
-│   ├── categorias/     # Microservicio de categorías
-│   └── products/       # Microservicio de productos
-│
-├── front-end/
-│   └── admin-store/    # Aplicación Angular
-│
-├── docker-compose.yml  # Orquestación de contenedores
-└── .gitignore
+
 🚀 1. Requisitos previos
 Docker y Docker Compose
 
