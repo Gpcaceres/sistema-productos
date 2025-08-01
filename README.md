@@ -22,23 +22,15 @@ Java 17 y Maven (solo si deseas compilar los microservicios localmente)
 
 Node.js + Angular CLI (solo para desarrollo frontend)
 
-🐳 2. LEVANTAR EL SISTEMA CON DOCKER COMPOSE
 
-Desde la raíz del proyecto:
+DESCARGA LA IMAGENES DE LOS CONTENEDORES
 
- - docker compose up -d
-  
-Detener los servicios:
+docker pull germancinec/test-db
+docker pull germancinec/categories
+docker pull germancinec/products:latest
 
- - docker compose stop
 
-Esto levantará:
-
-  * test-db (MySQL)
-
-  * app-categorias → API en http://localhost:8081/api/categories
-
-  * app-products → API en http://localhost:8082/api/products
+🐳 3. LEVANTAR EL SISTEMA CON DOCKER COMPOSE
 
 ⚙️ 3. Ejecutar contenedores manualmente (sin compose)
 
@@ -61,6 +53,24 @@ docker run -d --rm --name app-products \
   -e DB_USER=root \
   -e DB_PASSWORD=admin123 \
   germancinec/products:latest
+
+EJECUTA DESDE LA RAIZ DEL PROYECTO:
+
+ - docker compose up -d
+  
+Detener los servicios:
+
+ - docker compose stop
+
+Esto levantará:
+
+  * test-db (MySQL)
+
+  * app-categorias → API en http://localhost:8081/api/categories
+
+  * app-products → API en http://localhost:8082/api/products
+
+
   
 Nota: si la red net-app no existe, créala:  docker network create net-app
 
