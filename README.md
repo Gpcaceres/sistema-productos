@@ -123,4 +123,20 @@ COMANDO FINAL
 ruta raiz del proyecto Microservicios
 up-all.cmd
 
+SCRIPTS POSTMAN
+
+- PRODUCTOS
+
+  
+
+- CATEGORIAS
+
+  {
+  
+    "name": "",
+  
+    "description": "aparatos de casa"
+    
+}
+
 
