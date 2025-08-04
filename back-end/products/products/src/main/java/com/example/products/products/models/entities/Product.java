@@ -2,7 +2,9 @@ package com.example.products.products.models.entities;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.DecimalMin;
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 
 @Entity
 @Table(name = "products")
@@ -12,17 +14,19 @@ public class Product {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotNull(message = "Name cannot be null")
+    @NotBlank(message = "El nombre no puede estar vacío o solo con espacios")
+    @Size(max = 100, message = "El nombre no debe superar los 100 caracteres")
     private String name;
 
-    @NotNull(message = "Description cannot be null")
+    @NotBlank(message = "La descripción no puede estar vacía")
+    @Size(max = 255, message = "La descripción no debe superar los 255 caracteres")
     private String description;
 
-    @NotNull(message = "Price cannot be null")
-    @DecimalMin(value = "0.1", inclusive = false, message = "Price must be greater than zero")
+    @NotNull(message = "El precio no puede ser nulo")
+    @DecimalMin(value = "0.1", inclusive = false, message = "El precio debe ser mayor a cero")
     private Double price;
 
-    @NotNull(message = "Category ID cannot be null")
+    @NotNull(message = "La categoría no puede ser nula")
     private Long category;
 
     public Product() {
