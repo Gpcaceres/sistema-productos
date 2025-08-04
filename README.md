@@ -127,15 +127,49 @@ SCRIPTS POSTMAN
 
 - PRODUCTOS
 
+  * GET
+ 
+    localhost:8082/api/products
+
+    * POST
+
+    localhost:8080/api/products
+
+    * DELETE
+
+      localhost:8081/api/products/2
+
+     * UPDATE
+   
+       localhost:8081/api/products/3
+
+    {
+    
+    "name": "producto_actualizado",
+
+    "description": "mentas",
+
+    "price": 6
+    
+    }
+  
+
   
 
 - CATEGORIAS
 
+* POST
+
   {
   
     "name": "",
+  
     "description": "aparatos de casa"
   
   }
+
+  * GET
+
+    localhost:8081/api/categories
 
 
