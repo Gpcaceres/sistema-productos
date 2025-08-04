@@ -132,8 +132,10 @@ SCRIPTS POSTMAN
 - CATEGORIAS
 
   {
+  
     "name": "",
     "description": "aparatos de casa"
+  
   }
 
 
