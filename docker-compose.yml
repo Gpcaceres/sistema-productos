@@ -45,3 +45,31 @@ services:
       - test-db
       - app-categorias
     restart: unless-stopped
+
+  gateway:
+    image: germancinec/gateway
+    container_name: app-gateway
+    networks:
+      - net-app
+    ports:
+      - "8080:8080"   # Gateway expuesto en 8080 del host
+    environment:
+      - SPRING_PROFILES_ACTIVE=prod
+    depends_on:
+      - app-products
+      - app-categorias
+    restart: unless-stopped
+
+  app-frontend:
+    build:
+      context: ./front-end/admin-store
+      dockerfile: Dockerfile
+    image: germancinec/sistem-products
+    container_name: app-frontend
+    networks:
+      - net-app
+    ports:
+      - "4200:80"  # Angular servido por Nginx
+    depends_on:
+      - gateway
+    restart: unless-stopped
