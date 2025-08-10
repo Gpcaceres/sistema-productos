@@ -2,6 +2,12 @@ Link actualizado
 
 docker compose pull && docker compose up -d
 
+Instrucciones:
+
+Una vez ya se hayan levantado las imágenes de los contenedores esperar un minuto si arió el navegador actualice en:
+
+http://localhost:4200/products
+
 Para POSTMAN
 
 -----------------------------------------------------------------------------CATEGORIAS:------------------------------------------------------------------
