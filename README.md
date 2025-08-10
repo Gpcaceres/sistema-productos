@@ -37,6 +37,10 @@ localhost:8081/api/categories/1
 
 ------------------------------CATEGORIAS:-------------------------
 
+*GET 
+
+localhost:8081/api/categories
+
 * POST
 
 localhost:8081/api/categories
@@ -53,7 +57,7 @@ localhost:8082/api/products/2
 * PUT
 
       {
-        "name": "producto_actualizado",
+      "name": "producto_actualizado",
         "description": "mentas",
         "price": 6,
         "category": 1
