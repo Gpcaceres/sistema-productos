@@ -8,7 +8,9 @@ Una vez ya se hayan levantado las imágenes de los contenedores esperar un minut
 
 http://localhost:4200/products
 
-Para POSTMAN
+
+
+Aqui te dejo algunos comandos para POSTMAN 👇
 
 -----------------------------------------------------------------------------CATEGORIAS:------------------------------------------------------------------
 
