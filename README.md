@@ -4,7 +4,7 @@ docker compose pull && docker compose up -d
 
 Para POSTMAN
 
------------------------------PRODUCTOS:------------------------
+-----------------------------CATEGORIAS:------------------------
 
 * GET
 
@@ -12,13 +12,11 @@ localhost:8081/api/categories
 
 * POST
 
-localhost:8082/api/products
+localhost:8081/api/categories
 
     {
-    "name": "Producto X",
-    "price": 100.0,
-    "description": "asdf",
-    "category": 1
+    "name": "Hola ya vale 2",
+    "description": "aparatos de OFICINA"
     }
 
 * PUT
@@ -35,26 +33,26 @@ localhost:8081/api/categories/1
   localhost:8081/api/categories/1
 
 
-------------------------------CATEGORIAS:-------------------------
+------------------------------PRODUCTOS:-------------------------
 
 *GET 
 
-localhost:8081/api/categories
+localhost:8082/api/products
 
 * POST
 
-localhost:8081/api/categories
+localhost:8082/api/products
 
     {
-    "name": "Hola ya vale 2",
-    "description": "aparatos de OFICINA"
+    "name": "Producto Y",
+    "price": 100.0,
+    "description": "asdf",
+    "category": 1
     }
 
-* DELETE
-
-localhost:8082/api/products/2
-
 * PUT
+
+localhost:8082/api/products/3
 
       {
       "name": "producto_actualizado",
@@ -62,4 +60,8 @@ localhost:8082/api/products/2
         "price": 6,
         "category": 1
       }
+
+* DELETE
+
+localhost:8082/api/products/2
 
