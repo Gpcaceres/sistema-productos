@@ -16,13 +16,13 @@ localhost:8082/api/products
 
 {
 
-  "name": "Producto X",
+    "name": "Producto X",
   
-  "price": 100.0,
+    "price": 100.0,
   
-  "description": "asdf",
+    "description": "asdf",
   
-  "category": 1
+    "category": 1
   
 }
 
@@ -50,6 +50,7 @@ localhost:8081/api/categories/1
 localhost:8081/api/categories
 
 {
+
     "name": "Hola ya vale 2",
     
     "description": "aparatos de OFICINA"
@@ -64,6 +65,7 @@ localhost:8082/api/products/2
 * PUT
 
 {
+
     "name": "producto_actualizado",
     
     "description": "mentas",
