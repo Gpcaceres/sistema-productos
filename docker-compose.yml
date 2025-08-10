@@ -1,5 +1,3 @@
-version: "3.9"
-
 networks:
   net-app:
     driver: bridge
@@ -8,8 +6,7 @@ services:
   test-db:
     image: germancinec/test-db
     container_name: test-db
-    networks:
-      - net-app
+    networks: [net-app]
     ports:
       - "3306:3306"
     restart: unless-stopped
@@ -17,8 +14,7 @@ services:
   app-categorias:
     image: germancinec/categories
     container_name: app-categorias
-    networks:
-      - net-app
+    networks: [net-app]
     ports:
       - "8081:8081"
     environment:
@@ -30,8 +26,7 @@ services:
   app-products:
     image: germancinec/products:latest
     container_name: app-products
-    networks:
-      - net-app
+    networks: [net-app]
     ports:
       - "8082:8081"   # products expuesto en 8082 del host
     environment:
@@ -47,10 +42,9 @@ services:
     restart: unless-stopped
 
   gateway:
-    image: germancinec/gateway
+    image: germancinec/gateway:latest
     container_name: app-gateway
-    networks:
-      - net-app
+    networks: [net-app]
     ports:
       - "8080:8080"   # Gateway expuesto en 8080 del host
     environment:
@@ -61,13 +55,9 @@ services:
     restart: unless-stopped
 
   app-frontend:
-    build:
-      context: ./front-end/admin-store
-      dockerfile: Dockerfile
-    image: germancinec/sistem-products
+    image: germancinec/app-frontend:latest   # <- usando tu imagen en Docker Hub
     container_name: app-frontend
-    networks:
-      - net-app
+    networks: [net-app]
     ports:
       - "4200:80"  # Angular servido por Nginx
     depends_on:
