@@ -8,6 +8,10 @@ Una vez ya se hayan levantado las imágenes de los contenedores esperar un minut
 
 http://localhost:4200/products
 
+Despliegue público
+
+http://34.51.78.54:4200
+
 
 
 
