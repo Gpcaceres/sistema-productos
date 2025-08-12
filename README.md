@@ -1,154 +1,150 @@
-Link actualizado 
+SISTEMA-PRODUCTOS
+Despliegue local 🚀
+Para levantar el proyecto localmente, ejecuta los siguientes comandos:
+
+Bash
 
 docker compose pull && docker compose up -d
-
 Instrucciones:
-
-Una vez ya se hayan levantado las imágenes de los contenedores esperar un minuto si arió el navegador actualice en:
+Una vez que las imágenes de los contenedores se hayan descargado y levantado, espera un minuto y, si no se abre automáticamente, accede a la siguiente URL en tu navegador:
 
 http://localhost:4200/products
 
-Despliegue público
+Despliegue público 🌐
+El proyecto está desplegado en la siguiente dirección:
 
 http://34.51.78.54:4200
 
-Instrucciones para clonar el proyecto y desplegarlo en otro servidor
-
+Instrucciones para clonar y desplegar en otro servidor
 Descripción:
-
-Este proeycto esta desplegado en los sericios de Google Cloud en una VM de Debian en sistemas de Linux, para ello es necesario agregar la VM e intalar las herramientas necesarias que se detallaran a continuación:
+Este proyecto está desplegado en una máquina virtual (VM) de Debian en Google Cloud. Para replicar este despliegue, es necesario configurar una VM e instalar las herramientas necesarias que se detallan a continuación.
 
 Requisitos previos:
 
-* Tener instalado Docker y Docker Composue
+Tener instalado Docker y Docker Compose.
 
-* Tener accesso a un servidor de Linux (Debian o similar)
+Tener acceso a un servidor con un sistema operativo Linux (Debian o similar).
 
-* Tener acceso a internet para descargar las imágenes de los contenedores
+Tener acceso a internet para descargar las imágenes de los contenedores.
 
-* Tener instalado git en la VM
+Tener instalado Git en la VM.
 
-INSTALACIÓN EN VM Google Cloud:
+INSTALACIÓN EN VM de Google Cloud
+1. Conectarse por SSH
+En Google Cloud, desde tu VM llamada sistema-productos, haz clic en el botón SSH. Esto abrirá una terminal en tu navegador.
 
-1. CONECTAR POR SSH
+2. Instalar Docker y Docker Compose
+Actualizar paquetes
 
-   En Google Cloud, en tu VM (sistema-productos) haz clic en SSH → se abrirá una terminal en el navegador.
+Bash
 
-2. INSTALAR Docker y  Docker Compose
+sudo apt update && sudo apt upgrade -y
+Instalar dependencias en la VM
 
-# Actualizar Paquetes
+Bash
 
-    sudo apt update && sudo apt upgrade -y
+sudo apt install apt-transport-https ca-certificates curl software-properties-common -y
+Añadir GPG de Docker (firma de autenticidad)
 
-# Instalar dependencias en VM
+Bash
 
-    sudo apt install apt-transport-https ca-certificates curl software-properties-common -y
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
+Añadir el repositorio de Docker
 
-# Añadir GPG (firma de autenticidad) de Docker en VM
+Bash
 
-    curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
+echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+Instalar Docker y Docker Compose
 
-# Añadir repositoriod de Docker
+Bash
 
-    echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] \ https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | \ sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+sudo apt update
+sudo apt install docker-ce docker-ce-cli containerd.io docker-compose-plugin -y
+Habilitar y arrancar Docker
 
-# Intalar Docker Compouse
+Bash
 
-    sudo apt update
-    sudo apt install docker-ce docker-ce-cli containerd.io docker-compose-plugin -y
+sudo systemctl enable docker
+sudo systemctl start docker
+Agregar tu usuario al grupo de Docker
 
-# Habilitar y arrancar Docker
+Bash
 
-    sudo systemctl enable docker
-    sudo systemctl start docker
+sudo usermod -aG docker $USER
+3. Descargar el proyecto
+Asegúrate de tener el archivo docker-compose.yml en GitHub.
 
-# Agrega tu usuario al grupo de Docker 
+Bash
 
-    sudo usermod -aG docker $USER
+sudo apt install git -y
+git clone https://github.com/Gpcaceres/sistema-productos.git
+cd sistema-productos
+4. Dar acceso a los puertos mediante la CLI de Google Cloud
+Bash
 
-3. DESCARGA TU PROYECTO:
+gcloud compute firewall-rules create allow-sistema-productos \
+--direction=INGRESS --priority=1000 --network=default --action=ALLOW \
+--rules=tcp:4200,tcp:8080,tcp:8081,tcp:8082 \
+--source-ranges=0.0.0.0/0
+5. Levantar el proyecto
+Asegúrate de estar dentro de la carpeta del proyecto donde se encuentra el archivo docker-compose.yml.
 
-# Necesario tener docker-compouse.yml en GitHub
+Bash
 
-    sudo apt install git -y
-    git clone https://github.com/Gpcaceres/sistema-productos.git
-    cd sistema-productos
-
-4. DAT ACCESO A LOS PUERTOS MEDIANTE CLI DE Google Cloud 
-
-       gcloud compute firewall-rules create allow-sistema-productos \ --direction=INGRESS --priority=1000 --network=default --action=ALLOW \ --rules=tcp:4200,tcp:8080,tcp:8081,tcp:8082 \ --source-ranges=0.0.0.0/0
-    
-5. LEVANTAR PROYECTO:
-
-Necesario estar dentro del proyecto donde se encuentre el compuse
-
-        docker compose pull
-        docker compose up -d
-
-
-
- 
-Aqui te dejo algunos comandos para POSTMAN 👇
-
------------------------------------------------------------------------------CATEGORIAS:------------------------------------------------------------------
-
-* GET
-
-localhost:8081/api/categories
-
-* POST
+docker compose pull
+docker compose up -d
+Comandos para POSTMAN 👇
+CATEGORÍAS
+GET
 
 localhost:8081/api/categories
+POST
 
-    {
-    "name": "Hola ya vale 2",
-    "description": "aparatos de OFICINA"
-    }
+localhost:8081/api/categories
+JSON
 
-* PUT
+{
+  "name": "Hola ya vale 2",
+  "description": "aparatos de OFICINA"
+}
+PUT
 
 localhost:8081/api/categories/1
+JSON
 
-    {
-    "name": "Hola ya vale 3",
-    "description": "aparatos de COMETOLOGIA" 
-    }
+{
+  "name": "Hola ya vale 3",
+  "description": "aparatos de COMETOLOGIA"
+}
+DELETE
 
-* DELETE
-  
-  localhost:8081/api/categories/1
-  
-
-
-----------------------------------------------------------------------------PRODUCTOS:-------------------------------------------------------------------
-
-*GET 
+localhost:8081/api/categories/1
+PRODUCTOS
+GET
 
 localhost:8082/api/products
-
-* POST
+POST
 
 localhost:8082/api/products
+JSON
 
-    {
-    "name": "Producto Y",
-    "price": 100.0,
-    "description": "asdf",
-    "category": 1
-    }
-
-* PUT
+{
+  "name": "Producto Y",
+  "price": 100.0,
+  "description": "asdf",
+  "category": 1
+}
+PUT
 
 localhost:8082/api/products/3
+JSON
 
-      {
-      "name": "producto_actualizado",
-        "description": "mentas",
-        "price": 6,
-        "category": 1
-      }
-
-* DELETE
+{
+  "name": "producto_actualizado",
+  "description": "mentas",
+  "price": 6,
+  "category": 1
+}
+DELETE
 
 localhost:8082/api/products/2
-
