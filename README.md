@@ -2,11 +2,17 @@
 
 ## Despliegue local 🚀
 
+Instrucciones:
+
+Descarga y clona el repositorio de GitHub
+
+    git clone https://github.com/Gpcaceres/sistema-productos.git
+
 Para levantar el proyecto localmente, ejecuta los siguientes comandos:
 
-docker compose pull && docker compose up -d
+    docker compose pull && docker compose up -d
 
-Instrucciones:
+
 Una vez que las imágenes de los contenedores se hayan descargado y levantado, espera un minuto y, si no se abre automáticamente, accede a la siguiente URL en tu navegador:
 
 http://localhost:4200/products
@@ -39,27 +45,34 @@ En Google Cloud, desde tu VM llamada `sistema-productos`, haz clic en el botón 
 
 #### 2. Instalar Docker y Docker Compose
 Actualizar paquetes
-sudo apt update && sudo apt upgrade -y
+
+    sudo apt update && sudo apt upgrade -y
 
 Instalar dependencias en la VM
-sudo apt install apt-transport-https ca-certificates curl software-properties-common -y
+
+    sudo apt install apt-transport-https ca-certificates curl software-properties-common -y
 
 Añadir GPG de Docker (firma de autenticidad)
-curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
+
+    curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
 
 Añadir el repositorio de Docker
-echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+
+    echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
 
 Instalar Docker y Docker Compose
-sudo apt update
-sudo apt install docker-ce docker-ce-cli containerd.io docker-compose-plugin -y
+
+    sudo apt update
+    sudo apt install docker-ce docker-ce-cli containerd.io docker-compose-plugin -y
 
 Habilitar y arrancar Docker
-sudo systemctl enable docker
-sudo systemctl start docker
+
+    sudo systemctl enable docker
+    sudo systemctl start docker
 
 Agregar tu usuario al grupo de Docker
-sudo usermod -aG docker $USER
+
+    sudo usermod -aG docker $USER
 
 #### 3. Descargar el proyecto
 Asegúrate de tener el archivo `docker-compose.yml` en GitHub.
@@ -69,13 +82,14 @@ Asegúrate de tener el archivo `docker-compose.yml` en GitHub.
     cd sistema-productos
 
 #### 4. Dar acceso a los puertos mediante la CLI de Google Cloud
-gcloud compute firewall-rules create allow-sistema-productos --direction=INGRESS --priority=1000 --network=default --action=ALLOW --rules=tcp:4200,tcp:8080,tcp:8081,tcp:8082 --source-ranges=0.0.0.0/0
+
+    gcloud compute firewall-rules create allow-sistema-productos --direction=INGRESS --priority=1000 --network=default --action=ALLOW --rules=tcp:4200,tcp:8080,tcp:8081,tcp:8082 --source-ranges=0.0.0.0/0
 
 #### 5. Levantar el proyecto
 Asegúrate de estar dentro de la carpeta del proyecto donde se encuentra el archivo `docker-compose.yml`.
 
-docker compose pull
-docker compose up -d
+    docker compose pull
+    docker compose up -d
 
 ---
 
@@ -87,17 +101,19 @@ localhost:8081/api/categories
 
 * POST
 localhost:8081/api/categories
-{
-  "name": "Hola ya vale 2",
-  "description": "aparatos de OFICINA"
-}
+
+        {
+        "name": "Hola ya vale 2",
+        "description": "aparatos de OFICINA"
+        }
 
 * PUT
 localhost:8081/api/categories/1
-{
-  "name": "Hola ya vale 3",
-  "description": "aparatos de COMETOLOGIA"
-}
+
+        {
+          "name": "Hola ya vale 3",
+          "description": "aparatos de COMETOLOGIA"
+        }
 
 * DELETE
 localhost:8081/api/categories/1
@@ -110,21 +126,23 @@ localhost:8082/api/products
 
 * POST
 localhost:8082/api/products
-{
-  "name": "Producto Y",
-  "price": 100.0,
-  "description": "asdf",
-  "category": 1
-}
+
+        {
+          "name": "Producto Y",
+          "price": 100.0,
+          "description": "asdf",
+          "category": 1
+        }
 
 * PUT
 localhost:8082/api/products/3
-{
-  "name": "producto_actualizado",
-  "description": "mentas",
-  "price": 6,
-  "category": 1
-}
+
+        {
+          "name": "producto_actualizado",
+          "description": "mentas",
+          "price": 6,
+          "category": 1
+        }
 
 * DELETE
 localhost:8082/api/products/2
